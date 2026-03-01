@@ -28,7 +28,7 @@
 <body>
 <script>
     async function getAll(){
-        let host = "http://localhost:8080";
+        let host = "https://ducksservice-jakecole.onrender.com/";
         let response = await fetch(host + "/ducks");
         return await response.json();
     }
@@ -37,7 +37,7 @@
         const card = document.createElement("div");
         card.className = "card";
         const img = document.createElement("img");
-        img.src = `http://localhost:8080/ducks/${id}/image`;
+        img.src = `https://ducksservice-jakecole.onrender.com/ducks/${id}/image`;
         img.alt = "Avatar";
         img.style.width = "100%";
         card.appendChild(img);
@@ -77,12 +77,5 @@
 
 </script>
     <div id="DuckHolder"></div>
-<!--    <div class="card">-->
-<!--        <img src="http://localhost:8080/ducks/1/image" alt="Avatar" style="width:100%">-->
-<!--        <div class="container">-->
-<!--            <h4><b>1</b></h4>-->
-<!--            <p>Redhead</p>-->
-<!--        </div>-->
-<!--    </div>-->
 </body>
 </html>
