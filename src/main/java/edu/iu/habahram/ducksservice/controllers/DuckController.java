@@ -23,9 +23,11 @@ import java.util.Optional;
 public class DuckController {
 
     private DucksRepository ducksRepository;
+    private DucksFileRepository ducksFileRepository;
 
-    public DuckController(DucksRepository ducksFileRepository) {
-        this.ducksRepository = ducksFileRepository;
+    public DuckController(DucksRepository ducksRepository, DucksFileRepository ducksFileRepository) {
+        this.ducksFileRepository = ducksFileRepository;
+        this.ducksRepository = ducksRepository;
     }
 
 
@@ -69,7 +71,7 @@ public class DuckController {
     public boolean updateImage(@PathVariable int id,
                                @RequestParam MultipartFile file) {
         try {
-            return ducksRepository.updateImage(id, file);
+            return ducksFileRepository.updateImage(id, file);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -79,7 +81,7 @@ public class DuckController {
     public boolean updateAudio(@PathVariable int id,
                                @RequestParam MultipartFile file) {
         try {
-            return ducksRepository.updateAudio(id, file);
+            return ducksFileRepository.updateAudio(id, file);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -88,7 +90,7 @@ public class DuckController {
     @GetMapping("/{id}/image")
     public ResponseEntity<?> getImage(@PathVariable int id) {
         try {
-            byte[] image = ducksRepository.getImage(id);
+            byte[] image = ducksFileRepository.getImage(id);
             return ResponseEntity.status(HttpStatus.FOUND)
                     .contentType(MediaType.IMAGE_PNG)
                     .body(image);
@@ -96,17 +98,17 @@ public class DuckController {
             throw new RuntimeException(e);
         }
     }
-//
-//    @GetMapping("/{id}/audio")
-//    public ResponseEntity<?> getAudio(@PathVariable int id) {
-//        try {
-//            byte[] image = ducksRepository.getAudio(id);
-//            return ResponseEntity.status(HttpStatus.FOUND)
-//                    .contentType(MediaType.valueOf("audio/mp3"))
-//                    .body(image);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
+    @GetMapping("/{id}/audio")
+    public ResponseEntity<?> getAudio(@PathVariable int id) {
+        try {
+            byte[] image = ducksFileRepository.getAudio(id);
+            return ResponseEntity.status(HttpStatus.FOUND)
+                    .contentType(MediaType.valueOf("audio/mp3"))
+                    .body(image);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

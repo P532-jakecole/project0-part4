@@ -10,7 +10,4 @@ import org.springframework.web.multipart.MultipartFile;
 @Repository
 public interface DucksRepository
         extends CrudRepository<DuckData, Integer> {
-    boolean updateAudio(int id, MultipartFile file);
-    boolean updateImage(int id, MultipartFile file);
-    byte[] getImage(@PathVariable int id);
 }

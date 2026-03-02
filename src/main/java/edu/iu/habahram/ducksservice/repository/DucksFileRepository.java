@@ -19,16 +19,6 @@ import java.util.logging.Logger;
 @Component
 public class DucksFileRepository {
 
-//    public DucksFileRepository() {
-//        File file = new File(DATABASE_NAME);
-//        file.getParentFile().mkdirs();
-//        try{
-//            file.createNewFile();
-//        }catch(IOException e){
-//            LOG.severe(e.getMessage());
-//        }
-//    }
-
     public DucksFileRepository() {
         File ducksImagesDirectory = new File(IMAGES_FOLDER_PATH);
         if(!ducksImagesDirectory.exists()) {
