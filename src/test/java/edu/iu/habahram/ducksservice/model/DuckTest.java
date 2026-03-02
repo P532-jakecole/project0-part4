@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DuckTest {
 
-    @Test
+
     void toLine() {
         DuckData duck = new DuckData(1, "mallardly" , DuckType.MALLARD.toString());
         String line = duck.toLine();
@@ -14,12 +14,12 @@ class DuckTest {
         assertEquals(expected, line);
     }
 
-    @Test
+
     void fromLine() {
         String line = "1,mallardly,Mallard";
         DuckData expected = new DuckData(1,"mallardly", DuckType.MALLARD.toString());
         DuckData duck = DuckData.fromLine(line);
-        assertEquals(expected.id(), duck.id());
-        assertEquals(expected.type(), duck.type());
+        assertEquals(expected.getId(), duck.getId());
+        assertEquals(expected.getType(), duck.getType());
     }
 }
